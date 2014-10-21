@@ -1,0 +1,29 @@
+// TiffEdit.idl : type library source for TiffEdit.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (TiffEdit.tlb).
+
+[ uuid(E6EF9282-085C-4B74-AF92-22B1C7CC7F80), version(1.0) ]
+library TiffEdit
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  Primary dispatch interface for CTiffEditDoc
+	
+	[ uuid(64E90099-2D8C-40A6-A0EF-E6B81E50C91B) ]
+	dispinterface ITiffEdit
+	{
+		properties:
+			
+		methods:
+	};
+
+	//  Class information for CTiffEditDoc
+	
+	[ uuid(C503FA19-F1F0-488C-A662-F821D6FA732B) ]
+	coclass CTiffEditDoc
+	{
+		[default] dispinterface ITiffEdit;
+	};
+};

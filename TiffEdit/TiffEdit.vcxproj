@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AC3A1D23-00C7-4574-AD7B-2EB70A19FC5B}</ProjectGuid>
+    <RootNamespace>TiffEdit</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\GitProjects\TiffEdit\glew-1.10.0\include;D:\GitProjects\TiffEdit\freeglut\include;D:\GitProjects\TiffEdit\lib\jpg9a\include;D:\GitProjects\TiffEdit\lib\tifflib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RegisterOutput>false</RegisterOutput>
+      <AdditionalLibraryDirectories>D:\GitProjects\TiffEdit\lib\jpg9a\lib;D:\GitProjects\TiffEdit\lib\tifflib\lib;D:\GitProjects\TiffEdit\glew-1.10.0\lib\Release\Win32;D:\GitProjects\TiffEdit\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>jpeg.lib;libtiff.lib;libtiff_i.lib;freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>$(IntDir)TiffEdit.tlb</TypeLibraryName>
+      <HeaderFileName>TiffEdit_h.h</HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\GitProjects\TiffEdit\glew-1.10.0\include;D:\GitProjects\TiffEdit\freeglut\include;D:\GitProjects\TiffEdit\lib\jpg9a\include;D:\GitProjects\TiffEdit\lib\tifflib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <RegisterOutput>false</RegisterOutput>
+      <AdditionalLibraryDirectories>D:\GitProjects\TiffEdit\lib\jpg9a\lib;D:\GitProjects\TiffEdit\lib\tifflib\lib;D:\GitProjects\TiffEdit\glew-1.10.0\lib\Release\Win32;D:\GitProjects\TiffEdit\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>jpeg.lib;libtiff.lib;libtiff_i.lib;freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>$(IntDir)TiffEdit.tlb</TypeLibraryName>
+      <HeaderFileName>TiffEdit_h.h</HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\jpg9a\include\cderror.h" />
+    <ClInclude Include="..\lib\jpg9a\include\cdjpeg.h" />
+    <ClInclude Include="..\lib\jpg9a\include\jconfig.h" />
+    <ClInclude Include="..\lib\jpg9a\include\jdct.h" />
+    <ClInclude Include="..\lib\jpg9a\include\jerror.h" />
+    <ClInclude Include="..\lib\jpg9a\include\jinclude.h" />
+    <ClInclude Include="..\lib\jpg9a\include\jmemsys.h" />
+    <ClInclude Include="..\lib\jpg9a\include\jmorecfg.h" />
+    <ClInclude Include="..\lib\jpg9a\include\jpegint.h" />
+    <ClInclude Include="..\lib\jpg9a\include\jpeglib.h" />
+    <ClInclude Include="..\lib\jpg9a\include\jversion.h" />
+    <ClInclude Include="..\lib\jpg9a\include\transupp.h" />
+    <ClInclude Include="..\lib\tifflib\include\t4.h" />
+    <ClInclude Include="..\lib\tifflib\include\tiff.h" />
+    <ClInclude Include="..\lib\tifflib\include\tiffconf.h" />
+    <ClInclude Include="..\lib\tifflib\include\tiffconf.vc.h" />
+    <ClInclude Include="..\lib\tifflib\include\tiffconf.wince.h" />
+    <ClInclude Include="..\lib\tifflib\include\tiffio.h" />
+    <ClInclude Include="..\lib\tifflib\include\tiffiop.h" />
+    <ClInclude Include="..\lib\tifflib\include\tiffvers.h" />
+    <ClInclude Include="..\lib\tifflib\include\tif_config.h" />
+    <ClInclude Include="..\lib\tifflib\include\tif_config.vc.h" />
+    <ClInclude Include="..\lib\tifflib\include\tif_config.wince.h" />
+    <ClInclude Include="..\lib\tifflib\include\tif_dir.h" />
+    <ClInclude Include="..\lib\tifflib\include\tif_fax3.h" />
+    <ClInclude Include="..\lib\tifflib\include\tif_predict.h" />
+    <ClInclude Include="..\lib\tifflib\include\uvcode.h" />
+    <ClInclude Include="BinaryImageFilter.h" />
+    <ClInclude Include="CalendarBar.h" />
+    <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="ClassView.h" />
+    <ClInclude Include="ClosingFilter.h" />
+    <ClInclude Include="DilationFilter.h" />
+    <ClInclude Include="ErosionFilter.h" />
+    <ClInclude Include="FileView.h" />
+    <ClInclude Include="FilterBase.h" />
+    <ClInclude Include="FilterGroup.h" />
+    <ClInclude Include="GaussianFilter.h" />
+    <ClInclude Include="GreyscaleFilter.h" />
+    <ClInclude Include="Histogram.h" />
+    <ClInclude Include="HistogramDockWnd.h" />
+    <ClInclude Include="HistogramEqualizationFilter.h" />
+    <ClInclude Include="HistogramWnd.h" />
+    <ClInclude Include="ImageBase.h" />
+    <ClInclude Include="ImageInfo.h" />
+    <ClInclude Include="InvertFilter.h" />
+    <ClInclude Include="Log.h" />
+    <ClInclude Include="LogMessage.h" />
+    <ClInclude Include="LogWriter.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="OpenGlDummyWnd.h" />
+    <ClInclude Include="OpenGlHelper.h" />
+    <ClInclude Include="OpenGLView.h" />
+    <ClInclude Include="OpenGLWnd.h" />
+    <ClInclude Include="OpeningFilter.h" />
+    <ClInclude Include="OtsuThresholdFilter.h" />
+    <ClInclude Include="OutputWnd.h" />
+    <ClInclude Include="PointF.h" />
+    <ClInclude Include="PropertiesWnd.h" />
+    <ClInclude Include="RawImage.h" />
+    <ClInclude Include="RectF.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="ScreenLogWriter.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="TiffEdit.h" />
+    <ClInclude Include="TiffEditDoc.h" />
+    <ClInclude Include="TiffEditView.h" />
+    <ClInclude Include="TiffImage.h" />
+    <ClInclude Include="ViewTree.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BinaryImageFilter.cpp" />
+    <ClCompile Include="CalendarBar.cpp" />
+    <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="ClassView.cpp" />
+    <ClCompile Include="ClosingFilter.cpp" />
+    <ClCompile Include="DilationFilter.cpp" />
+    <ClCompile Include="ErosionFilter.cpp" />
+    <ClCompile Include="FileView.cpp" />
+    <ClCompile Include="FilterBase.cpp" />
+    <ClCompile Include="FilterGroup.cpp" />
+    <ClCompile Include="GaussianFilter.cpp" />
+    <ClCompile Include="GreyscaleFilter.cpp" />
+    <ClCompile Include="Histogram.cpp" />
+    <ClCompile Include="HistogramDockWnd.cpp" />
+    <ClCompile Include="HistogramEqualizationFilter.cpp" />
+    <ClCompile Include="HistogramWnd.cpp" />
+    <ClCompile Include="ImageBase.cpp" />
+    <ClCompile Include="InvertFilter.cpp" />
+    <ClCompile Include="Log.cpp" />
+    <ClCompile Include="LogMessage.cpp" />
+    <ClCompile Include="LogWriter.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="OpenGlDummyWnd.cpp" />
+    <ClCompile Include="OpenGlHelper.cpp" />
+    <ClCompile Include="OpenGLView.cpp" />
+    <ClCompile Include="OpenGLWnd.cpp" />
+    <ClCompile Include="OpeningFilter.cpp" />
+    <ClCompile Include="OtsuThresholdFilter.cpp" />
+    <ClCompile Include="OutputWnd.cpp" />
+    <ClCompile Include="PointF.cpp" />
+    <ClCompile Include="PropertiesWnd.cpp" />
+    <ClCompile Include="RawImage.cpp" />
+    <ClCompile Include="RectF.cpp" />
+    <ClCompile Include="ScreenLogWriter.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="TiffEdit.cpp" />
+    <ClCompile Include="TiffEditDoc.cpp" />
+    <ClCompile Include="TiffEditView.cpp" />
+    <ClCompile Include="TiffImage.cpp" />
+    <ClCompile Include="ViewTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="TiffEdit.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ribbon.mfcribbon-ms" />
+    <None Include="res\TiffEdit.rc2" />
+    <None Include="TiffEdit.reg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TiffEdit.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\buttons.bmp" />
+    <Image Include="res\classview.bmp" />
+    <Image Include="res\classview_hc.bmp" />
+    <Image Include="res\class_view.ico" />
+    <Image Include="res\class_view_hc.ico" />
+    <Image Include="res\explorer.bmp" />
+    <Image Include="res\explorer_hc.bmp" />
+    <Image Include="res\filelarge.bmp" />
+    <Image Include="res\filesmall.bmp" />
+    <Image Include="res\fileview.bmp" />
+    <Image Include="res\fileview_hc.bmp" />
+    <Image Include="res\file_view.ico" />
+    <Image Include="res\file_view_hc.ico" />
+    <Image Include="res\main.bmp" />
+    <Image Include="res\menuimages.bmp" />
+    <Image Include="res\menuimages_hc.bmp" />
+    <Image Include="res\nav_large.bmp" />
+    <Image Include="res\nav_large_hc.bmp" />
+    <Image Include="res\output_wnd.ico" />
+    <Image Include="res\output_wnd_hc.ico" />
+    <Image Include="res\pages.bmp" />
+    <Image Include="res\pages_hc.bmp" />
+    <Image Include="res\pages_small.bmp" />
+    <Image Include="res\pages_small_hc.bmp" />
+    <Image Include="res\properties.bmp" />
+    <Image Include="res\properties_hc.bmp" />
+    <Image Include="res\properties_wnd.ico" />
+    <Image Include="res\properties_wnd_hc.ico" />
+    <Image Include="res\sort.bmp" />
+    <Image Include="res\sort_hc.bmp" />
+    <Image Include="res\TiffEdit.ico" />
+    <Image Include="res\TiffEditDoc.ico" />
+    <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\Toolbar256.bmp" />
+    <Image Include="res\writelarge.bmp" />
+    <Image Include="res\writesmall.bmp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="TiffEdit.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
