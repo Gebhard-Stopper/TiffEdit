@@ -54,14 +54,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\GitProjects\TiffEdit\glew-1.10.0\include;D:\GitProjects\TiffEdit\freeglut\include;D:\GitProjects\TiffEdit\lib\jpg9a\include;D:\GitProjects\TiffEdit\lib\tifflib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\glew-1.10.0\include;..\freeglut\include;..\lib\jpg9a\include;..\lib\tifflib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <RegisterOutput>false</RegisterOutput>
-      <AdditionalLibraryDirectories>D:\GitProjects\TiffEdit\lib\jpg9a\lib;D:\GitProjects\TiffEdit\lib\tifflib\lib;D:\GitProjects\TiffEdit\glew-1.10.0\lib\Release\Win32;D:\GitProjects\TiffEdit\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\lib\jpg9a\lib;..\lib\tifflib\lib;..\glew-1.10.0\lib\Release\Win32;..\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>jpeg.lib;libtiff.lib;libtiff_i.lib;freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
@@ -86,7 +86,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\GitProjects\TiffEdit\glew-1.10.0\include;D:\GitProjects\TiffEdit\freeglut\include;D:\GitProjects\TiffEdit\lib\jpg9a\include;D:\GitProjects\TiffEdit\lib\tifflib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\glew-1.10.0\include;..\freeglut\include;..\lib\jpg9a\include;..\lib\tifflib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -94,7 +94,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <RegisterOutput>false</RegisterOutput>
-      <AdditionalLibraryDirectories>D:\GitProjects\TiffEdit\lib\jpg9a\lib;D:\GitProjects\TiffEdit\lib\tifflib\lib;D:\GitProjects\TiffEdit\glew-1.10.0\lib\Release\Win32;D:\GitProjects\TiffEdit\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\lib\jpg9a\lib;..\lib\tifflib\lib;..\glew-1.10.0\lib\Release\Win32;..\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>jpeg.lib;libtiff.lib;libtiff_i.lib;freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
@@ -146,6 +146,7 @@
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="ClosingFilter.h" />
+    <ClInclude Include="ColorConv.h" />
     <ClInclude Include="DilationFilter.h" />
     <ClInclude Include="ErosionFilter.h" />
     <ClInclude Include="FileView.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="OpeningFilter.h" />
     <ClInclude Include="OtsuThresholdFilter.h" />
     <ClInclude Include="OutputWnd.h" />
+    <ClInclude Include="PixelDef.h" />
     <ClInclude Include="PointF.h" />
     <ClInclude Include="PropertiesWnd.h" />
     <ClInclude Include="RawImage.h" />

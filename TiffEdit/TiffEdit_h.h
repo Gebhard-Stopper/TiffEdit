@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Sun Oct 19 21:43:23 2014
+/* at Tue Oct 21 22:52:06 2014
  */
 /* Compiler settings for TiffEdit.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 

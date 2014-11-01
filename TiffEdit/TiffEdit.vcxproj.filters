@@ -264,6 +264,12 @@
     <ClInclude Include="HistogramDockWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ColorConv.h">
+      <Filter>Header Files\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelDef.h">
+      <Filter>Header Files\helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TiffEdit.cpp">
