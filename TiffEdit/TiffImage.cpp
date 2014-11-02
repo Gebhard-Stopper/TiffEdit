@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <functional>
 #include "TiffImage.h"
 #include "Log.h"
 
@@ -63,100 +64,57 @@ BOOL CTiffImage::_readImage(CRawImage *pImage)
 	switch (m_ImageInfo.m_nBitsPerSample)
 	{
 		case 8:
-			_readScanlineImage8(pImage);
+			_readScanlineImage<BYTE>(pImage);
 			break;
 		case 16:
-			_readScanlineImage16(pImage);
+			_readScanlineImage<UINT16>(pImage);
 			break;
 		case 32:
-			_readScanlineImage32(pImage);
+			_readScanlineImage<UINT32>(pImage);
 			break;
 	}
 	
-	//return TIFFReadRGBAImage(m_pTiffImage, m_nWidth, m_nHeight, pBUffer, 0);
 	return TRUE;
 }
 
-void CTiffImage::_readScanlineImage8(CRawImage *pImage)
+template <class T>
+void CTiffImage::_readScanlineImage(CRawImage *pImage)
 {
-	float *pPixelBuff = static_cast<float*>(pImage->GetBitmapBits());
+	Pixelf *pPixelBuff = static_cast<Pixelf*>(pImage->GetBitmapBits());
 
 	auto scanline = TIFFScanlineSize(m_pTiffImage);
 
 	auto scanlineBuffer = _TIFFmalloc(scanline);
 
 	float maxVal = pow(2, m_ImageInfo.m_nBitsPerSample) - 1;
-	int pxlBuff;
+
+	auto nChannels = pImage->GetColorFormat();
+
+	auto func1 = [maxVal](T* ptr) { return Pixelf(ptr[0] / maxVal); };
+	auto func2 = [maxVal](T* ptr) { return Pixelf(ptr[0] / maxVal, ptr[1] / maxVal, ptr[2] / maxVal); };
+	auto func3 = [maxVal](T* ptr) { return Pixelf(ptr[0] / maxVal, ptr[1] / maxVal, ptr[2] / maxVal, ptr[3] / maxVal); };
+
+	std::function<Pixelf(T*)> pFunc;
+
+	switch (nChannels)
+	{
+	case ColorFormat::GreysScale:
+		pFunc = func1;
+		break;
+	case ColorFormat::RGB:
+		pFunc = func2;
+		break;
+	case ColorFormat::RGBA:
+		pFunc = func3;
+		break;
+	}
 
 	for (int row = 0; row < m_ImageInfo.m_nHeight; ++row)
 	{
 		TIFFReadScanline(m_pTiffImage, scanlineBuffer, row);
-		for (int col = 0; col < scanline; ++col){
-			*pPixelBuff = static_cast<BYTE*>(scanlineBuffer)[col] / maxVal;
-			pPixelBuff++;
-		}
-	}
-
-	_TIFFfree(scanlineBuffer);
-}
-
-void CTiffImage::_readScanlineImage16(CRawImage *pImage)
-{
-	float *pPixelBuff = static_cast<float*>(pImage->GetBitmapBits());
-
-	auto scanline = TIFFScanlineSize(m_pTiffImage);
-	auto scanlinePxls = scanline / (m_ImageInfo.m_nBitsPerSample / 8);
-
-	auto scanlineBuffer = _TIFFmalloc(scanline);
-
-	//float maxVal = pow(2, m_nBitsPerSample) - 1;
-	int pxlBuff;
-
-	float maxVal = 0.0f;
-
-	for (int row = 0; row < m_ImageInfo.m_nHeight; ++row)
-	{
-		TIFFReadScanline(m_pTiffImage, scanlineBuffer, row);
-		for (int col = 0; col < scanlinePxls; ++col){
-			float color = (float) static_cast<UINT16*>(scanlineBuffer)[col];// / maxVal;
-			if (color > maxVal) maxVal = color;
-			/*color *= 100;
-			if (color > 1.0f) color = 1.0f;*/
-			*pPixelBuff = color;
-
-			pPixelBuff++;
-		}
-	}
-
-	pPixelBuff = static_cast<float*>(pImage->GetBitmapBits());
-
-	for (int row = 0; row < m_ImageInfo.m_nHeight; ++row)
-	{
-		for (int col = 0; col < scanlinePxls; ++col){
-			*(pPixelBuff++) = *pPixelBuff / maxVal;
-		}
-	}
-
-	_TIFFfree(scanlineBuffer);
-}
-
-void CTiffImage::_readScanlineImage32(CRawImage *pImage)
-{
-	float *pPixelBuff = static_cast<float*>(pImage->GetBitmapBits());
-
-	auto scanline = TIFFScanlineSize(m_pTiffImage);
-	auto scanlinePxls = scanline / (m_ImageInfo.m_nBitsPerSample / 8);
-
-	auto scanlineBuffer = _TIFFmalloc(scanline);
-
-	float maxVal = pow(2, m_ImageInfo.m_nBitsPerSample) - 1;
-	int pxlBuff;
-
-	for (int row = 0; row < m_ImageInfo.m_nHeight; ++row)
-	{
-		TIFFReadScanline(m_pTiffImage, scanlineBuffer, row);
-		for (int col = 0; col < scanlinePxls; ++col){
-			*pPixelBuff = static_cast<UINT32*>(scanlineBuffer)[col] / maxVal;
+		for (int col = 0; col < scanline; col += nChannels)
+		{
+			*pPixelBuff = pFunc(&(static_cast<T*>(scanlineBuffer)[col]));
 			pPixelBuff++;
 		}
 	}

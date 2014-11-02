@@ -1,5 +1,6 @@
 #pragma once
 #include "ImageInfo.h"
+#include "PixelDef.h"
 
 class CRawImage
 {
@@ -15,7 +16,7 @@ public:
 				m_ImageInfo.m_nColorFormat == ColorFormat::RGB || 
 				m_ImageInfo.m_nColorFormat == ColorFormat::RGBA);
 
-		m_pBits = malloc(m_ImageInfo.TotalPixelCount() * m_ImageInfo.m_nColorFormat * sizeof(float));
+		m_pBits = malloc(m_ImageInfo.TotalPixelCount() * sizeof(Pixelf));
 	}
 
 	~CRawImage()

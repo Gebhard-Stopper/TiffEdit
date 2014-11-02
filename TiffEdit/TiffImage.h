@@ -51,6 +51,9 @@ public:
 
 private:
 	BOOL _readImage(CRawImage *pImage);
+
+	template <class T>
+	void _readScanlineImage(CRawImage *pImage);
 	void _readScanlineImage8(CRawImage *pImage);
 	void _readScanlineImage16(CRawImage *pImage);
 	void _readScanlineImage32(CRawImage *pImage);

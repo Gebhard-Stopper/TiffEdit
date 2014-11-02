@@ -3,29 +3,29 @@
 
 void CRawImage::Draw()
 {
+	auto pPxl = static_cast<Pixelf*>(m_pBits);
 
-	switch (m_ImageInfo.m_nColorFormat)
-	{
-		case ColorFormat::GreysScale:
-			_drawGreyscale();
-			break;
-		case ColorFormat::RGB:
-			_drawRGB();
-			break;
-		case ColorFormat::RGBA:
-			_drawRGBA();
-			break;
-	}	
-}
-
-void CRawImage::_drawGreyscale() const
-{
 	glBegin(GL_POINTS);
 
 	for (int y = 0; y < m_ImageInfo.m_nHeight; ++y) {
 		for (int x = 0; x < m_ImageInfo.m_nWidth; ++x) {
-			float color = static_cast<float*>(m_pBits)[y*m_ImageInfo.m_nWidth + x];
-			glColor3f(color, color, color);
+			glColor4fv(reinterpret_cast<float*>(&(pPxl[y*m_ImageInfo.m_nWidth + x])));
+			glVertex2d(x, y);
+		}
+	}
+
+	glEnd();
+}
+
+void CRawImage::_drawGreyscale() const
+{
+	auto pPxl = static_cast<Pixelf*>(m_pBits);
+
+	glBegin(GL_POINTS);
+
+	for (int y = 0; y < m_ImageInfo.m_nHeight; ++y) {
+		for (int x = 0; x < m_ImageInfo.m_nWidth; ++x) {
+			glColor3fv(reinterpret_cast<float*>(&pPxl[y*m_ImageInfo.m_nWidth + x]));
 			glVertex2d(x, y);
 		}
 	}
