@@ -1,6 +1,8 @@
 #pragma once
 #include "RectF.h"
 #include "PointF.h"
+#include "ShaderMngr.h"
+
 
 class COpenGLView 
 	: public CView
@@ -28,6 +30,9 @@ protected:
 	int			 m_nMSAASamples;			/**< Number of samples used for multisampling.*/
 
 	static BOOL m_bGlewInitialized;
+
+	CShaderMngr	m_ShdrMngr;
+
 //needed for WGL
 protected:
 	CPalette	 m_cPalette;				/**< Color palette, needed by m_pDC.*/

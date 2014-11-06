@@ -2,6 +2,7 @@
 #include <functional>
 #include "TiffImage.h"
 #include "Log.h"
+#include "ColorConv.h"
 
 
 CTiffImage::CTiffImage(TIFF *pTiffImage)
@@ -114,7 +115,7 @@ void CTiffImage::_readScanlineImage(CRawImage *pImage)
 		TIFFReadScanline(m_pTiffImage, scanlineBuffer, row);
 		for (int col = 0; col < scanline; col += nChannels)
 		{
-			*pPixelBuff = pFunc(&(static_cast<T*>(scanlineBuffer)[col]));
+			ColorConverter::ConvertToHSV(&pFunc(&(static_cast<T*>(scanlineBuffer)[col])), pPixelBuff);
 			pPixelBuff++;
 		}
 	}

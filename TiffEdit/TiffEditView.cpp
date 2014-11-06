@@ -73,7 +73,7 @@ void CTiffEditView::OnDraw(CDC* /*pDC*/)
 {
 	
 
-	if (!m_bDrawingEnabled) return;
+	//if (!m_bDrawingEnabled) return;
 
 	auto pParentFrame = GetParentFrame();
 	if (pParentFrame) {

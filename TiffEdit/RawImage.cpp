@@ -1,15 +1,18 @@
 #include "stdafx.h"
 #include "RawImage.h"
-
+#include "ColorConv.h"
 void CRawImage::Draw()
 {
 	auto pPxl = static_cast<Pixelf*>(m_pBits);
 
 	glBegin(GL_POINTS);
 
+	Pixelf dummy;
+
 	for (int y = 0; y < m_ImageInfo.m_nHeight; ++y) {
 		for (int x = 0; x < m_ImageInfo.m_nWidth; ++x) {
-			glColor4fv(reinterpret_cast<float*>(&(pPxl[y*m_ImageInfo.m_nWidth + x])));
+			ColorConverter::ConvertToRGB(&(pPxl[y*m_ImageInfo.m_nWidth + x]), &dummy);
+			glColor4fv(reinterpret_cast<float*>(&dummy));
 			glVertex2d(x, y);
 		}
 	}

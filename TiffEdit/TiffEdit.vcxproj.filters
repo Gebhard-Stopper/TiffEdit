@@ -49,6 +49,9 @@
     <Filter Include="Source Files\OpenGL">
       <UniqueIdentifier>{37d62a2d-5db0-4ef9-ac8d-4078eba98eef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{0ac1e6fe-09ad-4871-880d-e3ff7f202949}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -270,6 +273,9 @@
     <ClInclude Include="PixelDef.h">
       <Filter>Header Files\helper</Filter>
     </ClInclude>
+    <ClInclude Include="ShaderMngr.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TiffEdit.cpp">
@@ -392,6 +398,9 @@
     <ClCompile Include="HistogramDockWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShaderMngr.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="TiffEdit.idl">
@@ -405,6 +414,9 @@
     </None>
     <None Include="res\TiffEdit.rc2">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\shaders\Hsv2Rgb.glsl">
+      <Filter>Shader</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

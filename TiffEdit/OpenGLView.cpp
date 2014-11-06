@@ -49,14 +49,21 @@ void COpenGLView::Init()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	//if (!m_bGlewInitialized) {
+	if (!m_bGlewInitialized) {
 	//	//GLUT insits on at least a program name as parameter
 	//	char *my_argv[] = { "TiffEdit", NULL };
 	//	int   my_argc = 1;
 	//	glutInit(&my_argc, my_argv);
-	//	glewInit();
-	//	m_bGlewInitialized = TRUE;
-	//}	
+		glewInit();
+		m_bGlewInitialized = TRUE;
+	}	
+
+	/*bool bFrag = m_ShdrMngr.LoadShader("C:/Users/Gebhard/Documents/GitHub/TiffEdit/shaders/fragmentshader_default.glsl", GL_FRAGMENT_SHADER, "FragShader");
+	bool bVert = m_ShdrMngr.LoadShader("C:/Users/Gebhard/Documents/GitHub/TiffEdit/shaders/vertexshader_default.glsl", GL_VERTEX_SHADER, "VertShader");
+	if (bVert && bFrag) {
+		m_ShdrMngr.UseShader("FragShader");
+		m_ShdrMngr.UseShader("VertShader");
+	}*/
 
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 

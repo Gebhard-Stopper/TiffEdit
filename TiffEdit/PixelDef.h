@@ -20,17 +20,21 @@ struct Pixelf
 
 	float a;
 
-	Pixelf(float val)
+	__inline Pixelf() 
+		: a(1.0f)
+		{}
+
+	__inline Pixelf(float val)
 		: r(val), g(val), b(val), a(1.0f)
-	{}
+		{}
 
-	Pixelf(float rVal, float gVal, float bVal)
+	__inline Pixelf(float rVal, float gVal, float bVal)
 		: r(rVal), g(gVal), b(bVal), a(1.0f)
-	{}
+		{}
 
-	Pixelf(float rVal, float gVal, float bVal, float aVal)
+	__inline Pixelf(float rVal, float gVal, float bVal, float aVal)
 		: r(rVal), g(gVal), b(bVal), a(aVal)
-	{}
+		{}
 
 	__inline Pixelf& operator= (float val)
 	{
