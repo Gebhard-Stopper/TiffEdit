@@ -52,6 +52,9 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{0ac1e6fe-09ad-4871-880d-e3ff7f202949}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DLLs">
+      <UniqueIdentifier>{36bd55ba-a51a-4017-8f9e-8a40ce583e03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -417,6 +420,12 @@
     </None>
     <None Include="..\shaders\Hsv2Rgb.glsl">
       <Filter>Shader</Filter>
+    </None>
+    <None Include="..\freeglut\bin\freeglut.dll">
+      <Filter>DLLs</Filter>
+    </None>
+    <None Include="..\glew-1.10.0\bin\Release\Win32\glew32.dll">
+      <Filter>DLLs</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
