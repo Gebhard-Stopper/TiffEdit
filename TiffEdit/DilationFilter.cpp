@@ -12,19 +12,19 @@ CDilationFilter::~CDilationFilter()
 {
 }
 
-void CDilationFilter::_applyFilter(CRawImage *pImage) 
+void CDilationFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
 {
-	CHistogram histo(CHistogram::Grey, 8);
+	CHistogram histo(nChannel, 8);
 	histo.ComputeHisogram(pImage);
 	float otsu = histo.ComputeOtsuThreshold();
 
-	float *pPxlBuff = static_cast<float*>(pImage->GetBitmapBits());
-
 	auto pNewImage = CRawImage::CreateCompatibleImage(pImage);
-	float *pDestBuff = static_cast<float*>(pNewImage->GetBitmapBits());
+
+	auto pPxlBuff = pImage->GetBitmapBits();
+	auto pDestBuff = pNewImage->GetBitmapBits();
 
 	int nHeight = pImage->Height();
-	int nWidth = pImage->SamplesPerRow();
+	int nWidth = pImage->Width();
 
 	for (int y = 0; y < nHeight ; ++y)
 	{
@@ -36,7 +36,7 @@ void CDilationFilter::_applyFilter(CRawImage *pImage)
 			{
 				for (int j = -1; j < 2 && !bIn; ++j) {
 					for (int i = -1; i < 2; ++i) {
-						if (pPxlBuff[(y + j)*nWidth + (x + i)] > otsu) {
+						if (pPxlBuff[(y + j)*nWidth + (x + i)][nChannel] > otsu) {
 							bIn = TRUE; break;
 						}
 					}
@@ -56,4 +56,3 @@ void CDilationFilter::_applyFilter(CRawImage *pImage)
 
 	pImage->Attach(pNewImage->Detach());
 }
-void CDilationFilter::_applyFilterRGBA(CRawImage *pImage) {}

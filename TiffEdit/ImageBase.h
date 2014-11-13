@@ -13,7 +13,7 @@ protected:
 public:
 	virtual void* GetBitmapBits() const = NULL;
 	virtual void Draw() const = NULL;
-	virtual void ApplyFilter(CFilterBase &filter) = NULL;
+	virtual void ApplyFilter(CFilterBase &filter, ColorChannel nColorChannel) = NULL;
 
 public:
 	CImageBase(ImageContainerFormat nImageContainer);

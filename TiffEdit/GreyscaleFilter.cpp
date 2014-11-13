@@ -12,5 +12,7 @@ CGreyscaleFilter::~CGreyscaleFilter()
 {
 }
 
-void CGreyscaleFilter::_applyFilter(CRawImage *pImage) {}
-void CGreyscaleFilter::_applyFilterRGBA(CRawImage *pImage) {}
+void CGreyscaleFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
+{
+
+}

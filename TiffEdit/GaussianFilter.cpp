@@ -12,5 +12,7 @@ CGaussianFilter::~CGaussianFilter()
 {
 }
 
-void CGaussianFilter::_applyFilter(CRawImage *pImage) {}
-void CGaussianFilter::_applyFilterRGBA(CRawImage *pImage) {}
+void CGaussianFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
+{
+
+}

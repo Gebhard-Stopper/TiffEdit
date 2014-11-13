@@ -7,21 +7,19 @@ CErosionFilter::CErosionFilter()
 {
 }
 
-
 CErosionFilter::~CErosionFilter()
 {
 }
 
-void CErosionFilter::_applyFilter(CRawImage *pImage) 
+void CErosionFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
 {
-	CHistogram histo(CHistogram::Grey, 8);
+	CHistogram histo(nChannel, 8);
 	histo.ComputeHisogram(pImage);
-	float otsu = histo.ComputeOtsuThreshold() * .5;
-
-	float *pPxlBuff = static_cast<float*>(pImage->GetBitmapBits());
+	float otsu = histo.ComputeOtsuThreshold() * .5f;
 
 	auto pNewImage = CRawImage::CreateCompatibleImage(pImage);
-	float *pDestBuff = static_cast<float*>(pNewImage->GetBitmapBits());
+	auto pPxlBuff = pImage->GetBitmapBits();
+	auto pDestBuff = pNewImage->GetBitmapBits();
 
 	int nHeight = pImage->Height();
 	int nWidth = pImage->Width();
@@ -36,9 +34,12 @@ void CErosionFilter::_applyFilter(CRawImage *pImage)
 
 			if (y != 0 && x != 0 && y != (nHeight - 1) && x != (nWidth - 1))
 			{
-				for (int j = -1; j < 2 && bIn; ++j) {
-					for (int i = -1; i < 2; ++i) {
-						if (pPxlBuff[(y + j)*nWidth + (x + i)] < otsu) {
+				for (int j = -1; j < 2 && bIn; ++j) 
+				{
+					for (int i = -1; i < 2; ++i) 
+					{
+						if (pPxlBuff[(y + j)*nWidth + (x + i)][nChannel] < otsu) 
+						{
 							++ourCount;
 
 							bIn = FALSE; break;
@@ -61,5 +62,3 @@ void CErosionFilter::_applyFilter(CRawImage *pImage)
 	pImage->Attach(pNewImage->Detach());
 	delete pNewImage;
 }
-
-void CErosionFilter::_applyFilterRGBA(CRawImage *pImage) {}

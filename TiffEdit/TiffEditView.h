@@ -39,7 +39,7 @@ protected:
 	void DrawScene();
 
 public:
-	void ApplyFilter(CFilterBase& filter);
+	void ApplyFilter(CFilterBase& filter, ColorChannel nColorChannel = ColorChannel::Value);
 
 // Overrides
 public:

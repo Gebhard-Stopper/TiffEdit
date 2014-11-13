@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Histogram.h"
 
-
 CHistogram::CHistogram(ColorChannel colorChannel, UINT uBitsPerSample) //2 ^ uBitsPerSample = number of buckets
 	:m_nColorChannel(colorChannel)
 {
@@ -28,22 +27,22 @@ void CHistogram::ComputeHisogram(CRawImage *pImage)
 {
 	m_nTotalPixelCount = pImage->Width() * pImage->Height();
 
-	_computeHistogramRGB(pImage, pImage->GetColorFormat());
+	_computeHistogramRGB(pImage);
 }
 
-void CHistogram::_computeHistogramRGB(CRawImage *pImage, int offset)
+void CHistogram::_computeHistogramRGB(CRawImage *pImage)
 {
-	float *pPxlBuff = static_cast<float*>(pImage->GetBitmapBits());
+	auto pPxlBuff = pImage->GetBitmapBits();
 
 	int nHeight = pImage->Height();
-	int nWidth = pImage->SamplesPerRow();
+	int nWidth = pImage->Width();
 	int nMaxValue = m_nNumValues - 1;
 
 	for (int y = 0; y < nHeight; ++y)
 	{
-		for (int x = 0; x < nWidth; x += offset)
+		for (int x = 0; x < nWidth; ++x)
 		{
-			m_pBuckets[static_cast<int>(pPxlBuff[y*nWidth + x + m_nColorChannel] * nMaxValue)]++;
+			m_pBuckets[static_cast<int>(pPxlBuff[y*nWidth + x][m_nColorChannel] * nMaxValue)]++;
 		}
 	}
 }
@@ -92,29 +91,6 @@ void CHistogram::ToCumulativeHistogram()
 
 float CHistogram::ComputeOtsuThreshold() const
 {
-	//CHistogram dummy(*this);
-
-	//dummy.Normalize();
-	//float totalMean = dummy.CalcMean();
-
-	//float  w = 0;                // first order cumulative
-	//float  u = 0;                // second order cumulative
-
-	//float  work1, work2;		// working variables
-	//double work3 = 0.0;
-
-	//// Find optimal threshold value
-	//for (int i = 1; i < m_nNumValues-1; ++i) {
-	//	w += dummy[i-1];
-	//	u += (i*dummy[i - 1]);
-	//	work1 = (totalMean * w - u);
-	//	work2 = (work1 * work1) / (w * (1.0f - w));
-	//	if (work2>work3) work3 = work2;
-	//}
-
-	//// return the optimal thresholt in range [0..1]
-	//return sqrt(work3) / (m_nNumValues - 1);
-
 	CHistogram dummy(*this);
 
 	float sum = 0;

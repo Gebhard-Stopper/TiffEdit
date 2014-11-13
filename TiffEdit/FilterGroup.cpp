@@ -32,11 +32,13 @@ CFilterBase* CFilterGroup::GetFilter(int nIndex) const
 	{
 		return m_Filter[nIndex].get();
 	}
+
+	return nullptr;
 }
 
-void CFilterGroup::_onApplyFilter(CRawImage *pImage)
+void CFilterGroup::_onApplyFilter(CRawImage *pImage, ColorChannel nColorChannel)
 {
 	for (auto filter : m_Filter) {
-		filter->ApplyFilter(pImage);
+		filter->ApplyFilter(pImage, nColorChannel);
 	}
 }

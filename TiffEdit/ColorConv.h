@@ -112,7 +112,7 @@ public:
 		{
 			int nWidth = pRawImage->Width();
 			int nHeight = pRawImage->Height();
-			auto pBuffer = static_cast<Pixelf*>(const_cast<void*>(pRawImage->GetBitmapBits()));
+			auto pBuffer = pRawImage->GetBitmapBits();
 
 			for (int y = 0; y < nHeight; ++y)
 			{

@@ -12,9 +12,9 @@ CHistogramEqualizationFilter::~CHistogramEqualizationFilter()
 {
 }
 
-void CHistogramEqualizationFilter::_applyFilter(CRawImage *pImage) 
+void CHistogramEqualizationFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
 {
-	CHistogram histo(CHistogram::Grey, 8);
+	CHistogram histo(nChannel, 8);
 	histo.ComputeHisogram(pImage);
 
 	histo.ToCumulativeHistogram();
@@ -23,14 +23,15 @@ void CHistogramEqualizationFilter::_applyFilter(CRawImage *pImage)
 	int nHeight = pImage->Height();
 	float pxlCount = static_cast<float>(nWidth * nHeight);
 
-	float *pPixel = static_cast<float*>(pImage->GetBitmapBits());
+	auto pPixel = pImage->GetBitmapBits();
 	int nMaxValue = histo.GetMaxValue();
 
-	for (int y = 0; y < nHeight; ++y) {
-		for (int x = 0; x < nWidth; ++x) {
-			int indx = pPixel[y*nWidth + x] * nMaxValue;
-			pPixel[y*nWidth + x] = (pPixel[y*nWidth + x] + (histo[indx] / pxlCount)) / 2.0f;
+	for (int y = 0; y < nHeight; ++y) 
+	{
+		for (int x = 0; x < nWidth; ++x) 
+		{
+			int indx = pPixel[y*nWidth + x][nChannel] * nMaxValue;
+			pPixel[y*nWidth + x] = (pPixel[y*nWidth + x][nChannel] + (histo[indx] / pxlCount)) / 2.0f;
 		}
 	}
 }
-void CHistogramEqualizationFilter::_applyFilterRGBA(CRawImage *pImage) {}

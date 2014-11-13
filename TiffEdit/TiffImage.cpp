@@ -190,11 +190,11 @@ CRawImage* CTiffImage::GetCurrentDirectory() const
 	return m_ImageStack[m_nCurrentDirectory].get();
 }
 
-void CTiffImage::ApplyFilter(CFilterBase &filter)
+void CTiffImage::ApplyFilter(CFilterBase &filter, ColorChannel nColorChannel)
 {
 	auto pImg = GetCurrentDirectory();
 	if (pImg) {
-		filter.ApplyFilter(pImg);
+		filter.ApplyFilter(pImg, nColorChannel);
 	}
 }
 

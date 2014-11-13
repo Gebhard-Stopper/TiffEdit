@@ -12,22 +12,9 @@ CFilterBase::~CFilterBase()
 {
 }
 
-void CFilterBase::ApplyFilter(CRawImage *pImage) 
+void CFilterBase::ApplyFilter(CRawImage *pImage, ColorChannel nChannel)
 {
 	CLog::Info(_T("Applying %s"), m_strFiltername);
 
-	_onApplyFilter(pImage);
-}
-
-void CFilterBase::_onApplyFilter(CRawImage *pImage)
-{
-	switch (pImage->GetColorFormat())
-	{
-	case  ColorFormat::RGBA:
-		_applyFilterRGBA(pImage);
-		break;
-	default:
-		_applyFilter(pImage);
-		break;
-	}
+	_onApplyFilter(pImage, nChannel);
 }

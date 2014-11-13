@@ -30,7 +30,7 @@ public:
 	__inline int Width() const { return m_ImageInfo.m_nWidth; }
 	__inline int Height() const { return m_ImageInfo.m_nHeight; }
 	__inline int BitsPerPixel() const { return m_ImageInfo.m_nColorFormat * 8; }
-	__inline void* GetBitmapBits() const { return m_pBits; }
+	__inline Pixelf* GetBitmapBits() const { return static_cast<Pixelf*>(m_pBits); }
 	__inline UINT SamplesPerRow() const { return m_ImageInfo.m_nWidth * m_ImageInfo.m_nColorFormat; }
 	__inline ColorFormat GetColorFormat() const { return m_ImageInfo.m_nColorFormat; }
 
@@ -50,10 +50,5 @@ public:
 public:
 	static CRawImage *CreateCompatibleImage(const CRawImage* pSrc);
 	void Draw();
-
-private:
-	void _drawGreyscale() const;
-	void _drawRGB() const;
-	void _drawRGBA() const;
 };
 

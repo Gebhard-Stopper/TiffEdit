@@ -3,9 +3,6 @@
 
 class CHistogram
 {
-public:
-	enum ColorChannel { Red = 0, Green, Blue, Grey = 0 };
-
 private:
 	ColorChannel	 m_nColorChannel;
 	float			*m_pBuckets;
@@ -32,6 +29,6 @@ public:
 	float& operator [] (int nIndx) { return m_pBuckets[nIndx]; }
 
 private:
-	void _computeHistogramRGB(CRawImage *pImage, int offset);
+	void _computeHistogramRGB(CRawImage *pImage);
 };
 

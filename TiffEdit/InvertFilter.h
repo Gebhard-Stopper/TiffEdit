@@ -8,7 +8,6 @@ public:
 	~CInvertFilter();
 
 private:
-	virtual void _applyFilter(CRawImage *pImage);
-	virtual void _applyFilterRGBA(CRawImage *pImage);
+	virtual void _onApplyFilter(CRawImage *pImage, ColorChannel nChannel);
 };
 

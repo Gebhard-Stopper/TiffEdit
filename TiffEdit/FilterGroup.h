@@ -22,8 +22,6 @@ public:
 	CFilterBase* GetFilter(int nIndex) const;
 
 private://not applicable here
-	virtual void _onApplyFilter(CRawImage *pImage);
-	virtual void _applyFilter(CRawImage *pImage){}
-	virtual void _applyFilterRGBA(CRawImage *pImage){}
+	virtual void _onApplyFilter(CRawImage *pImage, ColorChannel nColorChannel);
 };
 

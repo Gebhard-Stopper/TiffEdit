@@ -63,7 +63,7 @@ private:
 	void _readImageInfo();
 
 public:
-	virtual void ApplyFilter(CFilterBase &filter);
+	virtual void ApplyFilter(CFilterBase &filter, ColorChannel nColorChannel);
 
 	virtual void* GetBitmapBits() const;
 

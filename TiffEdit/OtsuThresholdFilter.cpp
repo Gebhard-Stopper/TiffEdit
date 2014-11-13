@@ -12,26 +12,26 @@ COtsuThresholdFilter::~COtsuThresholdFilter()
 {
 }
 
-void COtsuThresholdFilter::_applyFilter(CRawImage *pImage) 
+void COtsuThresholdFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
 {
-	CHistogram histo(CHistogram::Grey, 8);
+	CHistogram histo(nChannel, 8);
 	histo.ComputeHisogram(pImage);
 
 	float otsu = histo.ComputeOtsuThreshold();
 
-	float *pPxlBuff = static_cast<float*>(pImage->GetBitmapBits());
+	auto pPxlBuff = pImage->GetBitmapBits();
 
 	int nHeight = pImage->Height();
-	int nWidth = pImage->SamplesPerRow();
+	int nWidth = pImage->Width();
 
 	for (int y = 0; y < nHeight; ++y)
 	{
 		for (int x = 0; x < nWidth; ++x)
 		{
-			if (pPxlBuff[y*nWidth + x] < otsu) {
-				pPxlBuff[y*nWidth + x] = 0.0f;
+			if (pPxlBuff[y*nWidth + x][nChannel] < otsu) 
+			{
+				pPxlBuff[y*nWidth + x][nChannel] = 0.0f;
 			}
 		}
 	}
 }
-void COtsuThresholdFilter::_applyFilterRGBA(CRawImage *pImage) {}

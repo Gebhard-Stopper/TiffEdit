@@ -12,9 +12,9 @@ CInvertFilter::~CInvertFilter()
 {
 }
 
-void CInvertFilter::_applyFilter(CRawImage *pImage)
+void CInvertFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
 {
-	float *pPxlBuff = static_cast<float*>(pImage->GetBitmapBits());
+	auto pPxlBuff = pImage->GetBitmapBits();
 
 	int nHeight = pImage->Height();
 	int nWidth = pImage->SamplesPerRow();
@@ -24,24 +24,6 @@ void CInvertFilter::_applyFilter(CRawImage *pImage)
 		for (int x = 0; x < nWidth; ++x )
 		{
 			pPxlBuff[y*nWidth + x] = 1.0f - pPxlBuff[y*nWidth + x];
-		}
-	}
-}
-
-void CInvertFilter::_applyFilterRGBA(CRawImage *pImage)
-{
-	float *pPxlBuff = static_cast<float*>(pImage->GetBitmapBits());
-
-	int nHeight = pImage->Height();
-	int nWidth = pImage->SamplesPerRow();
-
-	for (int y = 0; y < nHeight; ++y)
-	{
-		for (int x = 0; x < nWidth; x += 4)
-		{
-			pPxlBuff[y*nWidth + x] = 1.0f - pPxlBuff[y*nWidth + x];
-			pPxlBuff[y*nWidth + x+1] = 1.0f - pPxlBuff[y*nWidth + x+1];
-			pPxlBuff[y*nWidth + x+2] = 1.0f - pPxlBuff[y*nWidth + x+2];
 		}
 	}
 }

@@ -13,11 +13,9 @@ public:
 	~CFilterBase();
 
 public:
-	void ApplyFilter(CRawImage *pImage);
+	void ApplyFilter(CRawImage *pImage, ColorChannel nChannel);
 
 private:
-	virtual void _onApplyFilter(CRawImage *pImage);
-	virtual void _applyFilter(CRawImage *pImage) = NULL;
-	virtual void _applyFilterRGBA(CRawImage *pImage) = NULL;
+	virtual void _onApplyFilter(CRawImage *pImage, ColorChannel nChannel) = NULL;
 };
 
