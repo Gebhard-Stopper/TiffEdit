@@ -12,7 +12,6 @@ public:
 	~CBinaryImageFilter();
 
 private:
-	virtual void _applyFilter(CRawImage *pImage) ;
-	virtual void _applyFilterRGBA(CRawImage *pImage) ;
+	virtual void _applyFilter(CRawImage *pImage, const CFilterParam* pParams);
 };
 

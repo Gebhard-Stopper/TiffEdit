@@ -8,6 +8,6 @@ public:
 	~CDilationFilter();
 
 private:
-	virtual void _onApplyFilter(CRawImage *pImage, ColorChannel nChannel);
+	virtual void _onApplyFilter(CRawImage *pImage, const CFilterParam* pParams);
 };
 

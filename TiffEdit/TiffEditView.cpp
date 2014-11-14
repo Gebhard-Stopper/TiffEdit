@@ -248,7 +248,7 @@ BOOL CTiffEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	return COpenGLView::OnMouseWheel(nFlags, zDelta, pt);
 }
 
-void CTiffEditView::ApplyFilter(CFilterBase& filter, ColorChannel nColorChannel)
+void CTiffEditView::ApplyFilter(CFilterBase& filter, const CFilterParam* pParams)
 {
 	auto pDoc = GetDocument();
 
@@ -257,7 +257,7 @@ void CTiffEditView::ApplyFilter(CFilterBase& filter, ColorChannel nColorChannel)
 		auto pImage = pDoc->GetImage();
 		if (pImage)
 		{
-			pImage->ApplyFilter(filter, nColorChannel);
+			pImage->ApplyFilter(filter, pParams);
 			RedrawWindow();
 		}
 	}

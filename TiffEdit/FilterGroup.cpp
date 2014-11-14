@@ -36,9 +36,9 @@ CFilterBase* CFilterGroup::GetFilter(int nIndex) const
 	return nullptr;
 }
 
-void CFilterGroup::_onApplyFilter(CRawImage *pImage, ColorChannel nColorChannel)
+void CFilterGroup::_onApplyFilter(CRawImage *pImage, const CFilterParam* pParams)
 {
 	for (auto filter : m_Filter) {
-		filter->ApplyFilter(pImage, nColorChannel);
+		filter->ApplyFilter(pImage, pParams);
 	}
 }

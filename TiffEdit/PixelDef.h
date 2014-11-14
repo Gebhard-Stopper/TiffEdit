@@ -38,7 +38,7 @@ struct Pixelf
 		: r(rVal), g(gVal), b(bVal), a(aVal)
 		{}
 
-	__inline Pixelf& operator= (float val)
+	__inline Pixelf& operator = (float val)
 	{
 		r = g = b = val;
 		return *this;
@@ -53,14 +53,28 @@ struct Pixelf
 		return *this;
 	}
 
+	__inline Pixelf& operator += (const Pixelf& val)
+	{
+		h += val.h;
+		s += val.s;
+		v += val.s;
+
+		return *this;
+	}
+
 	__inline Pixelf operator - (const Pixelf& val) const
 	{
-		return Pixelf(h - val.h, s - val.s, v - val.v, a - val.a);
+		return Pixelf(h - val.h, s - val.s, v - val.v);
 	}
 
 	__inline Pixelf operator - (float val) const
 	{
 		return Pixelf(h - val, s - val, v - val);
+	}
+
+	__inline Pixelf operator * (float val) const
+	{
+		return Pixelf(h * val, s * val, v * val);
 	}
 
 	__inline float& operator[] (ColorChannel nChannel)

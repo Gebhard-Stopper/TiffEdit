@@ -8,6 +8,6 @@ public:
 	~CHistogramEqualizationFilter();
 
 private:
-	virtual void _onApplyFilter(CRawImage *pImage, ColorChannel nChannel);
+	virtual void _onApplyFilter(CRawImage *pImage, const CFilterParam* pParams);
 };
 

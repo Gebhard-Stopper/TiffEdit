@@ -115,7 +115,11 @@ void CTiffImage::_readScanlineImage(CRawImage *pImage)
 		TIFFReadScanline(m_pTiffImage, scanlineBuffer, row);
 		for (int col = 0; col < scanline; col += nChannels)
 		{
+#ifdef USE_HSV
 			ColorConverter::ConvertToHSV(&pFunc(&(static_cast<T*>(scanlineBuffer)[col])), pPixelBuff);
+#else
+			*pPixelBuff = pFunc(&(static_cast<T*>(scanlineBuffer)[col]));
+#endif
 			pPixelBuff++;
 		}
 	}
@@ -190,11 +194,11 @@ CRawImage* CTiffImage::GetCurrentDirectory() const
 	return m_ImageStack[m_nCurrentDirectory].get();
 }
 
-void CTiffImage::ApplyFilter(CFilterBase &filter, ColorChannel nColorChannel)
+void CTiffImage::ApplyFilter(CFilterBase &filter, const CFilterParam* pParams)
 {
 	auto pImg = GetCurrentDirectory();
 	if (pImg) {
-		filter.ApplyFilter(pImg, nColorChannel);
+		filter.ApplyFilter(pImg, pParams);
 	}
 }
 

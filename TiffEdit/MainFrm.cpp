@@ -496,37 +496,49 @@ CTiffEditView* CMainFrame::GetActiveView()
 void CMainFrame::OnBtnFilterThreshold()
 {
 	CTiffEditView* pView = GetActiveView();
-	pView->ApplyFilter(COtsuThresholdFilter());
+	CFilterParam param(ColorChannel::Value);
+
+	pView->ApplyFilter(COtsuThresholdFilter(), &param);
 }
 
 void CMainFrame::OnBtnFilterOpening()
 {
 	CTiffEditView* pView = GetActiveView();
-	pView->ApplyFilter(COpeningFilter());
+	CFilterParam param(ColorChannel::Value);
+
+	pView->ApplyFilter(COpeningFilter(), &param);
 }
 
 void CMainFrame::OnBtnFilterClosing()
 {
 	CTiffEditView* pView = GetActiveView();
-	pView->ApplyFilter(CClosingFilter());
+	CFilterParam param(ColorChannel::Value);
+
+	pView->ApplyFilter(CClosingFilter(), &param);
 }
 
 void CMainFrame::OnBtnFilterErosion()
 {
 	CTiffEditView* pView = GetActiveView();
-	pView->ApplyFilter(CErosionFilter());
+	CFilterParam param(ColorChannel::Value);
+
+	pView->ApplyFilter(CErosionFilter(), &param);
 }
 
 void CMainFrame::OnBtnFilterDilation()
 {
 	CTiffEditView* pView = GetActiveView();
-	pView->ApplyFilter(CDilationFilter());
+	CFilterParam param(ColorChannel::Value);
+
+	pView->ApplyFilter(CDilationFilter(), &param);
 }
 
 void CMainFrame::OnBtnFilterGaussian()
 {
 	CTiffEditView* pView = GetActiveView();
-	pView->ApplyFilter(CGaussianFilter());
+	GaussFilterParam param(ColorChannel::Value, 10, 2.0f);
+
+	pView->ApplyFilter(CGaussianFilter(), &param);
 }
 
 void CMainFrame::OnBtnFilterAnisotropic()

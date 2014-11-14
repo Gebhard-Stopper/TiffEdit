@@ -1,0 +1,23 @@
+ToDo
+- Outlookbar: 	- Remove calendar-tab
+				- Show files in folders
+				- Allow to double-click files to open them
+				- Allow to open files via drag-and-drop
+
+- Class View	- Remove dummy content
+				- Remove file view Tab
+				- Show structure of all open Images
+				
+- Histogram		- Display Histogram for H, S and V Channels
+				- Allow user to set individual threshold per color channel
+
+- Filters		- Implement Gaussian Filter
+				- Implement Negation Filter
+				- Implement Anisotropic Blur Filter
+				
+- Common Stuff	- Allow user to enable/disable single color channels
+				- Open Images via drag-and-drop
+				- Show/Hide docking windows
+				- Undo/Redo
+				- Allow uset to build and save custom filters
+				

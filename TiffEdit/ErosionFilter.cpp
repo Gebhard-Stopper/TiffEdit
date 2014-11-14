@@ -11,9 +11,9 @@ CErosionFilter::~CErosionFilter()
 {
 }
 
-void CErosionFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
+void CErosionFilter::_onApplyFilter(CRawImage *pImage, const CFilterParam* pParams)
 {
-	CHistogram histo(nChannel, 8);
+	CHistogram histo(pParams->nChannel, 8);
 	histo.ComputeHisogram(pImage);
 	float otsu = histo.ComputeOtsuThreshold() * .5f;
 
@@ -38,7 +38,7 @@ void CErosionFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
 				{
 					for (int i = -1; i < 2; ++i) 
 					{
-						if (pPxlBuff[(y + j)*nWidth + (x + i)][nChannel] < otsu) 
+						if (pPxlBuff[(y + j)*nWidth + (x + i)][pParams->nChannel] < otsu) 
 						{
 							++ourCount;
 

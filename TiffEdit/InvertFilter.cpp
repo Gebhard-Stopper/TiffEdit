@@ -12,7 +12,7 @@ CInvertFilter::~CInvertFilter()
 {
 }
 
-void CInvertFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
+void CInvertFilter::_onApplyFilter(CRawImage *pImage, const CFilterParam* pParams)
 {
 	auto pPxlBuff = pImage->GetBitmapBits();
 

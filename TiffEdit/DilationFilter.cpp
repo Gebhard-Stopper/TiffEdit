@@ -12,9 +12,9 @@ CDilationFilter::~CDilationFilter()
 {
 }
 
-void CDilationFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
+void CDilationFilter::_onApplyFilter(CRawImage *pImage, const CFilterParam* pParams)
 {
-	CHistogram histo(nChannel, 8);
+	CHistogram histo(pParams->nChannel, 8);
 	histo.ComputeHisogram(pImage);
 	float otsu = histo.ComputeOtsuThreshold();
 
@@ -36,7 +36,7 @@ void CDilationFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
 			{
 				for (int j = -1; j < 2 && !bIn; ++j) {
 					for (int i = -1; i < 2; ++i) {
-						if (pPxlBuff[(y + j)*nWidth + (x + i)][nChannel] > otsu) {
+						if (pPxlBuff[(y + j)*nWidth + (x + i)][pParams->nChannel] > otsu) {
 							bIn = TRUE; break;
 						}
 					}

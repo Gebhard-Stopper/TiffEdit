@@ -13,5 +13,4 @@ CBinaryImageFilter::~CBinaryImageFilter()
 }
 
 
-void CBinaryImageFilter::_applyFilter(CRawImage *pImage) {}
-void CBinaryImageFilter::_applyFilterRGBA(CRawImage *pImage) {}
+void CBinaryImageFilter::_applyFilter(CRawImage *pImage, const CFilterParam* pParams) {}

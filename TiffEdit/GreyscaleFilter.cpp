@@ -12,7 +12,7 @@ CGreyscaleFilter::~CGreyscaleFilter()
 {
 }
 
-void CGreyscaleFilter::_onApplyFilter(CRawImage *pImage, ColorChannel nChannel)
+void CGreyscaleFilter::_onApplyFilter(CRawImage *pImage, const CFilterParam* pParams)
 {
 
 }

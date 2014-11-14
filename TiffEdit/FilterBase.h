@@ -2,6 +2,19 @@
 
 #include "RawImage.h"
 
+class CFilterParam
+{
+public:
+	CFilterParam(ColorChannel channel)
+		:nChannel(channel)
+	{}
+
+public:
+	ColorChannel nChannel;
+
+public:
+	virtual CString ToString() const;
+};
 
 class CFilterBase
 {
@@ -13,9 +26,9 @@ public:
 	~CFilterBase();
 
 public:
-	void ApplyFilter(CRawImage *pImage, ColorChannel nChannel);
+	void ApplyFilter(CRawImage *pImage, const CFilterParam* pParams);
 
 private:
-	virtual void _onApplyFilter(CRawImage *pImage, ColorChannel nChannel) = NULL;
+	virtual void _onApplyFilter(CRawImage *pImage, const CFilterParam* pParams) = NULL;
 };
 
