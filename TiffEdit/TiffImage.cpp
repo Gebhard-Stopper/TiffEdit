@@ -3,6 +3,7 @@
 #include "TiffImage.h"
 #include "Log.h"
 #include "ColorConv.h"
+#include "HistogramEqualizationFilter.h"
 
 
 CTiffImage::CTiffImage(TIFF *pTiffImage)
@@ -84,16 +85,12 @@ void CTiffImage::_readScanlineImage(CRawImage *pImage)
 	Pixelf *pPixelBuff = static_cast<Pixelf*>(pImage->GetBitmapBits());
 
 	auto scanline = TIFFScanlineSize(m_pTiffImage);
-
 	auto scanlineBuffer = _TIFFmalloc(scanline);
-
-	float maxVal = pow(2, m_ImageInfo.m_nBitsPerSample) - 1;
-
 	auto nChannels = pImage->GetColorFormat();
 
-	auto func1 = [maxVal](T* ptr) { return Pixelf(ptr[0] / maxVal); };
-	auto func2 = [maxVal](T* ptr) { return Pixelf(ptr[0] / maxVal, ptr[1] / maxVal, ptr[2] / maxVal); };
-	auto func3 = [maxVal](T* ptr) { return Pixelf(ptr[0] / maxVal, ptr[1] / maxVal, ptr[2] / maxVal, ptr[3] / maxVal); };
+	auto func1 = [](T* ptr) { return Pixelf(ptr[0]); };
+	auto func2 = [](T* ptr) { return Pixelf(ptr[0], ptr[1], ptr[2]); };
+	auto func3 = [](T* ptr) { return Pixelf(ptr[0], ptr[1], ptr[2], ptr[3]); };
 
 	std::function<Pixelf(T*)> pFunc;
 
@@ -110,19 +107,48 @@ void CTiffImage::_readScanlineImage(CRawImage *pImage)
 		break;
 	}
 
+	scanline /= sizeof(T);
+
+	int maxR = 0, maxG = 0, maxB = 0;
+
 	for (int row = 0; row < m_ImageInfo.m_nHeight; ++row)
 	{
 		TIFFReadScanline(m_pTiffImage, scanlineBuffer, row);
 		for (int col = 0; col < scanline; col += nChannels)
 		{
+			Pixelf dummyPixel = pFunc(&(static_cast<T*>(scanlineBuffer)[col]));
+
+			if (dummyPixel.r> maxR) maxR = dummyPixel.r;
+			if (dummyPixel.g > maxG) maxG = dummyPixel.g;
+			if (dummyPixel.b > maxB) maxB = dummyPixel.b;
+
+			*pPixelBuff = dummyPixel;
+
+			pPixelBuff++;
+		}
+	}
+
+	float maxVal = maxR > maxG ? maxR > maxB ? maxR : maxB : maxG > maxB ? maxG : maxB;
+
+	pPixelBuff = static_cast<Pixelf*>(pImage->GetBitmapBits());
+
+	for (int row = 0; row < m_ImageInfo.m_nHeight; ++row)
+	{
+		for (int col = 0; col < scanline; col += nChannels)
+		{
+			*pPixelBuff /= maxVal;
+
 #ifdef USE_HSV
-			ColorConverter::ConvertToHSV(&pFunc(&(static_cast<T*>(scanlineBuffer)[col])), pPixelBuff);
+			ColorConverter::ConvertToHSV(pPixelBuff, pPixelBuff);
 #else
-			*pPixelBuff = pFunc(&(static_cast<T*>(scanlineBuffer)[col]));
+			*pPixelBuff = dummyPixel;
 #endif
 			pPixelBuff++;
 		}
 	}
+
+	CLog::Info(_T("MaxR: %d, MaxG: %d, MaxB: %d"), maxR, maxG, maxB);
+
 
 	_TIFFfree(scanlineBuffer);
 }

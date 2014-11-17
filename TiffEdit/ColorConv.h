@@ -26,6 +26,7 @@ public:
 			// r = g = b = 0		// s = 0, v is undefined
 			hsvDummy.s = 0;
 			hsvDummy.h = -1;
+			*pPixelHSV = hsvDummy;
 			return;
 		}
 

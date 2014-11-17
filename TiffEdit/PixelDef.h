@@ -77,6 +77,14 @@ struct Pixelf
 		return Pixelf(h * val, s * val, v * val);
 	}
 
+	__inline Pixelf& operator /= (float val)
+	{
+		h /= val;
+		s /= val;
+		v /= val;
+		return *this;
+	}
+
 	__inline float& operator[] (ColorChannel nChannel)
 	{
 		return reinterpret_cast<float*>(this)[nChannel];

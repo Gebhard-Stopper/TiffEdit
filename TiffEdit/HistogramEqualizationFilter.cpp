@@ -14,7 +14,7 @@ CHistogramEqualizationFilter::~CHistogramEqualizationFilter()
 
 void CHistogramEqualizationFilter::_onApplyFilter(CRawImage *pImage, const CFilterParam* pParams)
 {
-	CHistogram histo(pParams->nChannel, 8);
+	CHistogram histo(pParams->nChannel, 16);
 	histo.ComputeHisogram(pImage);
 
 	histo.ToCumulativeHistogram();
@@ -31,7 +31,7 @@ void CHistogramEqualizationFilter::_onApplyFilter(CRawImage *pImage, const CFilt
 		for (int x = 0; x < nWidth; ++x) 
 		{
 			int indx = pPixel[y*nWidth + x][pParams->nChannel] * nMaxValue;
-			pPixel[y*nWidth + x] = (pPixel[y*nWidth + x][pParams->nChannel] + (histo[indx] / pxlCount)) / 2.0f;
+			pPixel[y*nWidth + x][pParams->nChannel] = (pPixel[y*nWidth + x][pParams->nChannel] + (histo[indx] / pxlCount)) / 2.0f;
 		}
 	}
 }
